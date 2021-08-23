@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: default
+name: Publish Website
 
 steps:
 - name: dependencies
@@ -8,13 +8,9 @@ steps:
   commands:
     - yarn
     - yarn global add @quasar/cli
-  
-- name: build
-  image: node
-  commands:
     - quasar build
 
-- name: public
+- name: publish
   image: plugins/gh-pages
   settings:
     username:
