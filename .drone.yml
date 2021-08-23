@@ -3,14 +3,14 @@ type: docker
 name: Publish Website
 
 steps:
-- name: dependencies
+- name: Install Dependencies and Build
   image: node
   commands:
     - yarn
     - yarn global add @quasar/cli
     - quasar build
 
-- name: publish
+- name: Publish Website
   image: plugins/gh-pages
   settings:
     username:
