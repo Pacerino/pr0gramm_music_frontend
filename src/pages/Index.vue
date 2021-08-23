@@ -26,8 +26,39 @@
 
 <script lang="ts">
 import { ref, onMounted } from 'vue';
-import { useQuasar } from 'quasar'
+import { useQuasar } from 'quasar';
 import { api } from 'boot/axios';
+import { AxiosResponse } from 'axios';
+
+interface props {
+  pagination: propsProps;
+}
+
+interface propsProps {
+  sortBy: string;
+  descending: boolean;
+  page: number;
+  rowsPerPage: number;
+  rowsNumber: number;
+}
+
+interface Row {
+  id: number;
+  itemID: number;
+  title: string;
+  album: string;
+  artist: string;
+  url: string;
+  noData: number;
+}
+interface ResponseObject {
+  limit: number;
+  page: number;
+  sort: string;
+  total_rows: number;
+  total_pages: number;
+  rows: Row[];
+}
 
 const columns = [
   {
@@ -65,7 +96,7 @@ export default {
       rowsNumber: 10,
     });
 
-    function onRequest(props: any) {
+    function onRequest(props: props) {
       const { page, rowsPerPage, sortBy, descending } = props.pagination;
       if (descending) {
         sort.value = 'desc';
@@ -74,9 +105,8 @@ export default {
       }
       api
         .get(`/items?limit=${rowsPerPage}&page=${page}&sort=${sort.value}`)
-        .then((response) => {
-          const resRows: never[] = response.data.rows;
-          rows.value.splice(0, rows.value.length, ...resRows);
+        .then((response: AxiosResponse<ResponseObject>) => {
+          rows.value.splice(0, rows.value.length, ...response.data.rows);
 
           pagination.value.page = page;
           pagination.value.rowsNumber = response.data.total_rows;
