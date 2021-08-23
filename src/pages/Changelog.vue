@@ -4,6 +4,10 @@
       <q-splitter v-model="splitterModel" class="full-height full-width q-pa-xl">
         <template v-slot:before>
           <q-tabs v-model="tab" vertical class="text-teal">
+            <q-tab name="1.0.4">
+              <div class="q-tab__label">v1.0.4</div>
+              <small class="text-grey-7">23.08.2021</small>
+            </q-tab>
             <q-tab name="1.0.3">
               <div class="q-tab__label">v1.0.3</div>
               <small class="text-grey-7">22.08.2021</small>
@@ -32,6 +36,16 @@
             transition-prev="jump-up"
             transition-next="jump-up"
           >
+            <q-tab-panel name="1.0.4">
+              <div class="text-h4 q-mb-md">v1.0.4</div>
+              <div>
+                    <ul>
+                        <li>Durchsuchen von gespeicherten Anfragen jetzt möglich</li>
+                        <li>Tägliche Statistik über Anfragen mit derer Ergebnise nun als Chart</li>
+                        <li>Changelog für Web und Bot</li>
+                    </ul>
+              </div>
+            </q-tab-panel>
             <q-tab-panel name="1.0.3">
               <div class="text-h4 q-mb-md">v1.0.3</div>
               <div>
@@ -84,7 +98,7 @@ import { ref } from 'vue';
 export default {
   setup() {
     return {
-      tab: ref('1.0.3'),
+      tab: ref('1.0.4'),
       splitterModel: ref(10),
     };
   },
