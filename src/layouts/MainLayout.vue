@@ -10,7 +10,7 @@
         <q-btn-group>
           <q-btn flat icon="insights" label="Statistik" to="stats" />
           <q-btn flat icon="view_list" label="Changelog" to="changelog" />
-          <q-btn flat icon="code" label="Github" to="/" />
+          <q-btn flat icon="code" label="Github" to="/" @click="handleGithub"/>
         </q-btn-group>
       </q-toolbar>
     </q-header>
@@ -25,5 +25,12 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'MainLayout',
+  setup() {
+    return{
+      handleGithub() {
+        window.open('https://github.com/Pacerino?tab=repositories&q=pr0gramm_music', '_blank')
+      }
+    }
+  }
 });
 </script>
