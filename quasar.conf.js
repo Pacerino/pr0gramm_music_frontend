@@ -30,6 +30,7 @@ module.exports = configure(function (ctx) {
     // https://v2.quasar.dev/quasar-cli/boot-files
     boot: [
       'axios',
+      'sentry'
     ],
 
     // https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -77,6 +78,9 @@ module.exports = configure(function (ctx) {
       chainWebpack (/* chain */) {
         //
       },
+      extendWebpack (/* cfg */) {
+        //
+      }
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer

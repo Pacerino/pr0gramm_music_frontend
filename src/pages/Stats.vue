@@ -12,7 +12,7 @@
             color="secondary"
             text-color="white"
             mask="YYYY-MM-DD"
-            minimal="true"
+            minimal=true
             navigation-min-year-month="2021/06"
           >
             <div class="row items-center justify-end q-gutter-sm">
@@ -179,7 +179,6 @@ export default defineComponent({
       save() {
         $q.loading.show();
         loaded.value = false;
-        console.log(date.value);
         if (!date.value.from || !date.value.to) {
           callApi();
         } else {
