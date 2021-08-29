@@ -7,6 +7,10 @@
       >
         <template v-slot:before>
           <q-tabs v-model="tab" vertical class="text-teal">
+            <q-tab name="1.0.6">
+              <div class="q-tab__label">v1.0.6</div>
+              <small class="text-grey-7">30.08.2021</small>
+            </q-tab>
             <q-tab name="1.0.5">
               <div class="q-tab__label">v1.0.5</div>
               <small class="text-grey-7">24.08.2021</small>
@@ -43,6 +47,23 @@
             transition-prev="jump-up"
             transition-next="jump-up"
           >
+            <q-tab-panel name="1.0.6">
+              <div class="text-h4 q-mb-md">v1.0.6</div>
+              <div>
+                <div class="text-h6 q-mb-md">Website</div>
+                <ul>
+                  <li>In der Tabelle können nun PostID und die URL angeklickt werden - Danke an <a href="https://pr0gramm.com/user/holzmaster" target="_blank" class="text-secondary">holzmaster</a></li>
+                  <li>Alle Links werden nun durch eigene ersetzt</li>
+                  <li>Github Pages wurde gelöscht</li>
+                  <li>Eine eigene Domain</li>
+                </ul>
+                <q-separator />
+                <div class="text-h6 q-mb-md">Bot</div>
+                <ul>
+                  <li>Alle Links werden nun durch eigene ersetzt</li>
+                </ul>
+              </div>
+            </q-tab-panel>
             <q-tab-panel name="1.0.5">
               <div class="text-h4 q-mb-md">v1.0.5</div>
               <div>
@@ -150,7 +171,7 @@ import { ref } from 'vue';
 export default {
   setup() {
     return {
-      tab: ref('1.0.5'),
+      tab: ref('1.0.6'),
       splitterModel: ref(10),
     };
   },
