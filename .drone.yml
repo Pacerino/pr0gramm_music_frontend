@@ -1,20 +1,15 @@
 kind: pipeline
 type: docker
-name: Publish Website
+name: default
 
 steps:
-- name: Install Dependencies and Build
-  image: node
-  commands:
-    - yarn
-    - yarn global add @quasar/cli
-    - quasar build
-
-- name: Publish Website
-  image: plugins/gh-pages
+- name: docker
+  image: plugins/docker
   settings:
     username:
-      from_secret: github_username
+      from_secret: registry_user
     password:
-      from_secret: github_password
-    pages_directory: dist/spa/
+      from_secret: registrylogin
+    repo: reg.s-c.systems/pr0/pr0music_web_frontend
+    tags: latest
+    registry: reg.s-c.systems
