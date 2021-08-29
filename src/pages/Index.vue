@@ -14,6 +14,7 @@
           row-key="name"
           :grid="$q.screen.xs"
           @request="onRequest"
+          @row-click="handleClick"
         >
           <template v-slot:loading>
             <q-inner-loading showing color="secondary" />
@@ -35,8 +36,6 @@ interface props {
 }
 
 interface propsProps {
-  sortBy: string;
-  descending: boolean;
   page: number;
   rowsPerPage: number;
   rowsNumber: number;
@@ -61,14 +60,15 @@ interface ResponseObject {
 }
 
 const columns = [
-  {
+  /* {
     name: 'id',
     required: true,
     label: 'ID',
     align: 'left',
     field: 'id',
     sortable: true,
-  },
+    classes: 'hidden'
+  }, */
   {
     name: 'itemid',
     label: 'Post ID',
@@ -77,42 +77,32 @@ const columns = [
     required: true,
   },
   { name: 'title', label: 'Titel', field: 'title', required: false },
-  { name: 'album', label: 'Album', field: 'album', required: false },
+  { name: 'album', label: 'Album', field: 'album', required: false},
   { name: 'artist', label: 'Artist', field: 'artist', required: false },
-  { name: 'url', label: 'URL', field: 'url', required: false },
+  { name: 'url', label: 'URL', field: 'url', required: false},
 ];
 
 export default {
   setup() {
     const loading = ref(true);
     const rows = ref([{}, {}, {}, {}, {}, {}, {}, {}]);
-    const sort = ref('asc');
     const $q = useQuasar();
     const pagination = ref({
-      sortBy: 'desc',
-      descending: false,
       page: 1,
       rowsPerPage: 10,
       rowsNumber: 10,
     });
 
     function onRequest(props: props) {
-      const { page, rowsPerPage, sortBy, descending } = props.pagination;
-      if (descending) {
-        sort.value = 'desc';
-      } else {
-        sort.value = 'asc';
-      }
+      const { page, rowsPerPage } = props.pagination;
       api
-        .get(`/items?limit=${rowsPerPage}&page=${page}&sort=${sort.value}`)
+        .get(`/items?limit=${rowsPerPage}&page=${page}&sort=desc`)
         .then((response: AxiosResponse<ResponseObject>) => {
           rows.value.splice(0, rows.value.length, ...response.data.rows);
 
           pagination.value.page = page;
           pagination.value.rowsNumber = response.data.total_rows;
           pagination.value.rowsPerPage = rowsPerPage;
-          pagination.value.sortBy = sortBy;
-          pagination.value.descending = descending;
           loading.value = false;
         })
         .catch(() => {
@@ -126,6 +116,10 @@ export default {
         });
     }
 
+    function handleClick(_event: Record<string, unknown> , row: Row) {
+      window.open(`https://pr0gramm.com/new/${row.id}`, '_blank')
+    }
+
     onMounted(() => {
       onRequest({
         pagination: pagination.value,
@@ -137,8 +131,8 @@ export default {
       rows,
       loading,
       pagination,
-
       onRequest,
+      handleClick,
     };
   },
 };
