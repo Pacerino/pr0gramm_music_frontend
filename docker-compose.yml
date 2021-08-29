@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  pr0music:
+    image: "reg.s-c.systems/pr0/pr0music_web_frontend:latest"
+    restart: unless-stopped
+    ports:
+        - "80:80"
