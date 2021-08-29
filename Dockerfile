@@ -3,7 +3,6 @@ WORKDIR /app
 COPY package*.json ./
 COPY yarn.lock ./
 RUN yarn
-RUN yarn global add @quasar/cli
 RUN quasar build
 COPY . .
 
