@@ -4,8 +4,8 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY package*.json ./
 COPY yarn.lock ./
 RUN yarn
-RUN quasar build
 COPY . .
+RUN quasar build
 
 FROM nginx:stable-alpine as production-stage
 COPY --from=build-stage /app/dist/spa /usr/share/nginx/html
