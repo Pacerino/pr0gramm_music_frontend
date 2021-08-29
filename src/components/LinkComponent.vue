@@ -1,6 +1,6 @@
 <template>
-  <q-card class="my-card">
-    <q-card-section>
+  <q-card v-if="data['title']">
+    <q-card-section >
       <div class="text-h6">{{data['title']}}</div>
       <div class="text-subtitle2">by {{data['artist']}}</div>
     </q-card-section>
@@ -16,6 +16,7 @@
       <q-btn v-if="data['tidalURL']" color="tidal" icon="img:/tidal.svg" @click="handleClick(data['tidalURL'])"/>
     </q-card-actions>
   </q-card>
+  <h2 v-else>Keine Daten gefunden!</h2>
 </template>
 
 <script lang="ts">

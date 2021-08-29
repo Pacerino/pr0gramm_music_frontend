@@ -30,8 +30,8 @@ interface InfoResponse {
   applemusicURL: string;
   applemusicID: string;
   title: string;
-	album: string;
-	artist: string;
+  album: string;
+  artist: string;
   acrID: string;
 }
 
@@ -41,25 +41,29 @@ export default {
     const apiData = ref<InfoResponse>();
     $q.loading.show();
     const route = useRoute();
-    console.log(route.params.id);
-    api
-      .get(`/info/${route.params.id.toString()}`)
-      .then((res: AxiosResponse<InfoResponse>) => {
-        $q.loading.hide();
-        if (res.status == 200) {
-          apiData.value = res.data;
-        } else {
-          $q.notify({
-            color: 'negative',
-            position: 'top',
-            message: 'Loading failed',
-            icon: 'report_problem',
-          });
-        }
-      })
-      .catch((err) => console.log(err));
+    const acrID = route.params.id.toString();
+    if (acrID.length > 0) {
+      api
+        .get(`/info/${acrID}`)
+        .then((res: AxiosResponse<InfoResponse>) => {
+          $q.loading.hide();
+          if (res.status == 200) {
+            apiData.value = res.data;
+          } else {
+            $q.notify({
+              color: 'negative',
+              position: 'top',
+              message: 'Loading failed',
+              icon: 'report_problem',
+            });
+          }
+        })
+        .catch((err) => console.log(err));
+    } else {
+      window.open('/', '_blank');
+    }
     return {
-      apiData
+      apiData,
     };
   },
   components: {
