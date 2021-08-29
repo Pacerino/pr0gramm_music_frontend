@@ -117,7 +117,7 @@ export default {
     }
 
     function handleClick(_event: Record<string, unknown> , row: Row) {
-      window.open(`https://pr0gramm.com/new/${row.id}`, '_blank')
+      window.open(`https://pr0gramm.com/new/${row.itemID}`, '_blank')
     }
 
     onMounted(() => {
