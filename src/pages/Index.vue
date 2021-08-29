@@ -14,8 +14,17 @@
           row-key="name"
           :grid="$q.screen.xs"
           @request="onRequest"
-          @row-click="handleClick"
         >
+          <template v-slot:body-cell-url="cellProperties">
+            <q-td :props="cellProperties">
+              <a :href="cellProperties.value" target="_blank" class="text-white">{{ cellProperties.value }}</a>
+            </q-td>
+          </template>
+          <template v-slot:body-cell-itemid="cellProperties">
+            <q-td :props="cellProperties">
+              <a :href="'https://pr0gramm.com/new/' + cellProperties.value" target="_blank" class="text-white">{{ cellProperties.value }}</a>
+            </q-td>
+          </template>
           <template v-slot:loading>
             <q-inner-loading showing color="secondary" />
           </template>
@@ -77,9 +86,9 @@ const columns = [
     required: true,
   },
   { name: 'title', label: 'Titel', field: 'title', required: false },
-  { name: 'album', label: 'Album', field: 'album', required: false},
+  { name: 'album', label: 'Album', field: 'album', required: false },
   { name: 'artist', label: 'Artist', field: 'artist', required: false },
-  { name: 'url', label: 'URL', field: 'url', required: false},
+  { name: 'url', label: 'URL', field: 'url', required: false },
 ];
 
 export default {
@@ -116,10 +125,6 @@ export default {
         });
     }
 
-    function handleClick(_event: Record<string, unknown> , row: Row) {
-      window.open(`https://pr0gramm.com/new/${row.itemID}`, '_blank')
-    }
-
     onMounted(() => {
       onRequest({
         pagination: pagination.value,
@@ -132,7 +137,6 @@ export default {
       loading,
       pagination,
       onRequest,
-      handleClick,
     };
   },
 };
