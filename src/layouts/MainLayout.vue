@@ -8,8 +8,8 @@
 
         <q-space />
         <q-btn-group>
-          <q-btn flat icon="insights" label="Statistik" to="stats" />
-          <q-btn flat icon="view_list" label="Changelog" to="changelog" />
+          <q-btn flat icon="insights" label="Statistik" to="/stats" />
+          <q-btn flat icon="view_list" label="Changelog" to="/changelog" />
           <q-btn flat icon="code" label="Github" to="/" @click="handleGithub"/>
         </q-btn-group>
       </q-toolbar>
