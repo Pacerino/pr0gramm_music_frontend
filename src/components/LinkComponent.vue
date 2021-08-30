@@ -1,22 +1,51 @@
 <template>
-  <q-card v-if="data['title']">
-    <q-card-section >
-      <div class="text-h6">{{data['title']}}</div>
-      <div class="text-subtitle2">by {{data['artist']}}</div>
+  <q-card>
+    <q-card-section>
+      <div class="text-h6">{{ data['title'] }}</div>
+      <div class="text-subtitle2">by {{ data['artist'] }}</div>
     </q-card-section>
 
     <q-separator />
 
     <q-card-actions vertical>
-      <q-btn v-if="data['soundcloudURL']" color="soundcloud" icon="fab fa-soundcloud" @click="handleClick(data['soundcloudURL'])"/>
-      <q-btn v-if="data['spotifyURL']" color="spotify" icon="fab fa-spotify" @click="handleClick(data['spotifyURL'])"/>
-      <q-btn v-if="data['deezerURL']" color="deezer" icon="fab fa-deezer" @click="handleClick(data['deezerURL'])"/>
-      <q-btn v-if="data['youtubeURL']" color="youtube" icon="fab fa-youtube" @click="handleClick(data['youtubeURL'])"/>
-      <q-btn v-if="data['applemusicURL']" color="applemusic" icon="fab fa-itunes" @click="handleClick(data['applemusicURL'])"/>
-      <q-btn v-if="data['tidalURL']" color="tidal" icon="img:/tidal.svg" @click="handleClick(data['tidalURL'])"/>
+      <q-btn
+        v-if="data['soundcloudURL']"
+        color="soundcloud"
+        icon="fab fa-soundcloud"
+        @click="handleClick(data['soundcloudURL'])"
+      />
+      <q-btn
+        v-if="data['spotifyURL']"
+        color="spotify"
+        icon="fab fa-spotify"
+        @click="handleClick(data['spotifyURL'])"
+      />
+      <q-btn
+        v-if="data['deezerURL']"
+        color="deezer"
+        icon="fab fa-deezer"
+        @click="handleClick(data['deezerURL'])"
+      />
+      <q-btn
+        v-if="data['youtubeURL']"
+        color="youtube"
+        icon="fab fa-youtube"
+        @click="handleClick(data['youtubeURL'])"
+      />
+      <q-btn
+        v-if="data['applemusicURL']"
+        color="applemusic"
+        icon="fab fa-itunes"
+        @click="handleClick(data['applemusicURL'])"
+      />
+      <q-btn
+        v-if="data['tidalURL']"
+        color="tidal"
+        icon="img:/tidal.svg"
+        @click="handleClick(data['tidalURL'])"
+      />
     </q-card-actions>
   </q-card>
-  <h2 v-else>Keine Daten gefunden!</h2>
 </template>
 
 <script lang="ts">
@@ -25,12 +54,12 @@ export default defineComponent({
   name: 'LinkComponent',
   props: ['data'],
   setup() {
-    return{
+    return {
       handleClick(url: string) {
-        window.open(url, '_blank')
-      }
-    }
-  }
+        window.open(url, '_blank');
+      },
+    };
+  },
 });
 </script>
 

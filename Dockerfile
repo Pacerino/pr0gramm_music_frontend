@@ -5,7 +5,7 @@ COPY package*.json ./
 COPY yarn.lock ./
 RUN yarn
 COPY . .
-RUN quasar build
+RUN quasar build -d
 
 FROM nginx:stable-alpine as production-stage
 COPY --from=build-stage /app/dist/spa /usr/share/nginx/html

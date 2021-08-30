@@ -17,12 +17,22 @@
         >
           <template v-slot:body-cell-url="cellProperties">
             <q-td :props="cellProperties">
-              <a :href="cellProperties.value" target="_blank" class="text-white">{{ cellProperties.value }}</a>
+              <a
+                :href="cellProperties.value"
+                target="_blank"
+                class="text-white"
+                >{{ cellProperties.value }}</a
+              >
             </q-td>
           </template>
           <template v-slot:body-cell-itemid="cellProperties">
             <q-td :props="cellProperties">
-              <a :href="'https://pr0gramm.com/new/' + cellProperties.value" target="_blank" class="text-white">{{ cellProperties.value }}</a>
+              <a
+                :href="'https://pr0gramm.com/new/' + cellProperties.value"
+                target="_blank"
+                class="text-white"
+                >{{ cellProperties.value }}</a
+              >
             </q-td>
           </template>
           <template v-slot:loading>
@@ -69,15 +79,6 @@ interface ResponseObject {
 }
 
 const columns = [
-  /* {
-    name: 'id',
-    required: true,
-    label: 'ID',
-    align: 'left',
-    field: 'id',
-    sortable: true,
-    classes: 'hidden'
-  }, */
   {
     name: 'itemid',
     label: 'Post ID',

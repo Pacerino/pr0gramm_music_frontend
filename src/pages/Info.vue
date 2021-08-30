@@ -1,9 +1,12 @@
 <template>
   <div class="row q-mt-md">
     <div class="fit row wrap justify-center items-start content-start">
-      <pre v-cloak>
-        <LinkComponent :data="apiData"></LinkComponent>
-      </pre>
+      <LinkComponent
+        :data="apiData"
+        v-cloak
+        v-if="typeof apiData !== undefined && apiData['title'].length > 0"
+      ></LinkComponent>
+      <h2 v-else>Keine Daten gefunden!</h2>
     </div>
   </div>
 </template>
