@@ -52,7 +52,9 @@
 import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'LinkComponent',
-  props: ['data'],
+  props: {
+    data: { default: [] }
+  },
   setup() {
     return {
       handleClick(url: string) {

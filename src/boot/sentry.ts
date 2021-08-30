@@ -13,6 +13,6 @@ export default boot(({ app, router }) => {
             tracingOrigins: ['localhost:8080', 'pr0sauce.info', /^\//],
           })
         ],
-        tracesSampleRate: 0.2,
+        tracesSampleRate: 1.0,
       });
 });

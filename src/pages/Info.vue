@@ -1,11 +1,7 @@
 <template>
   <div class="row q-mt-md">
     <div class="fit row wrap justify-center items-start content-start">
-      <LinkComponent
-        :data="apiData"
-        v-cloak
-        v-if="typeof apiData !== undefined && apiData['title'].length > 0"
-      ></LinkComponent>
+      <LinkComponent :data="apiData" v-cloak v-if="apiData"></LinkComponent>
       <h2 v-else>Keine Daten gefunden!</h2>
     </div>
   </div>
@@ -16,7 +12,7 @@ import { useRoute } from 'vue-router';
 import { api } from 'boot/axios';
 import { useQuasar } from 'quasar';
 import { AxiosResponse } from 'axios';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import LinkComponent from 'components/LinkComponent.vue';
 
 interface InfoResponse {
@@ -45,26 +41,28 @@ export default {
     $q.loading.show();
     const route = useRoute();
     const acrID = route.params.id.toString();
-    if (acrID.length > 0) {
-      api
-        .get(`/info/${acrID}`)
-        .then((res: AxiosResponse<InfoResponse>) => {
-          $q.loading.hide();
-          if (res.status == 200) {
-            apiData.value = res.data;
-          } else {
-            $q.notify({
-              color: 'negative',
-              position: 'top',
-              message: 'Loading failed',
-              icon: 'report_problem',
-            });
-          }
-        })
-        .catch((err) => console.log(err));
-    } else {
-      window.open('/', '_blank');
-    }
+    onMounted(() => {
+      if (acrID.length > 0) {
+        api
+          .get(`/info/${acrID}`)
+          .then((res: AxiosResponse<InfoResponse>) => {
+            $q.loading.hide();
+            if (res.status == 200) {
+              apiData.value = res.data;
+            } else {
+              $q.notify({
+                color: 'negative',
+                position: 'top',
+                message: 'Loading failed',
+                icon: 'report_problem',
+              });
+            }
+          })
+          .catch((err) => console.log(err));
+      } else {
+        window.open('/', '_blank');
+      }
+    });
     return {
       apiData,
     };
