@@ -49,42 +49,41 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType  } from 'vue';
+import { defineComponent, PropType } from 'vue';
 
 interface InfoResponse {
-    id:        number;
-    createdAt: Date;
-    updatedAt: Date;
-    deletedAt: null;
-    itemID:    number;
-    title:     string;
-    album:     string;
-    artist:    string;
-    url:       string;
-    acrID:     string;
-    metadata:  Metadata;
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: null;
+  itemID: number;
+  title: string;
+  album: string;
+  artist: string;
+  url: string;
+  acrID: string;
+  Metadata: Metadata;
 }
 
 interface Metadata {
-    deezerURL:     string;
-    deezerID:      string;
-    soundcloudURL: string;
-    soundcloudID:  string;
-    spotifyURL:    string;
-    spotifyID:     string;
-    youtubeURL:    string;
-    youtubeID:     string;
-    tidalURL:      string;
-    tidalID:       string;
-    applemusicURL: string;
-    applemusicID:  string;
+  deezerURL: string;
+  deezerID: string;
+  soundcloudURL: string;
+  soundcloudID: string;
+  spotifyURL: string;
+  spotifyID: string;
+  youtubeURL: string;
+  youtubeID: string;
+  tidalURL: string;
+  tidalID: string;
+  applemusicURL: string;
+  applemusicID: string;
 }
-
 
 export default defineComponent({
   name: 'LinkComponent',
   props: {
-    data: { 
+    data: {
       type: Object as PropType<InfoResponse>
     }
   },

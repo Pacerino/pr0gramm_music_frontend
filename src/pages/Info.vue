@@ -16,34 +16,33 @@ import { ref, onMounted } from 'vue';
 import LinkComponent from 'components/LinkComponent.vue';
 
 interface InfoResponse {
-    id:        number;
-    createdAt: Date;
-    updatedAt: Date;
-    deletedAt: null;
-    itemID:    number;
-    title:     string;
-    album:     string;
-    artist:    string;
-    url:       string;
-    acrID:     string;
-    metadata:  Metadata;
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: null;
+  itemID: number;
+  title: string;
+  album: string;
+  artist: string;
+  url: string;
+  acrID: string;
+  Metadata: Metadata;
 }
 
 interface Metadata {
-    deezerURL:     string;
-    deezerID:      string;
-    soundcloudURL: string;
-    soundcloudID:  string;
-    spotifyURL:    string;
-    spotifyID:     string;
-    youtubeURL:    string;
-    youtubeID:     string;
-    tidalURL:      string;
-    tidalID:       string;
-    applemusicURL: string;
-    applemusicID:  string;
+  deezerURL: string;
+  deezerID: string;
+  soundcloudURL: string;
+  soundcloudID: string;
+  spotifyURL: string;
+  spotifyID: string;
+  youtubeURL: string;
+  youtubeID: string;
+  tidalURL: string;
+  tidalID: string;
+  applemusicURL: string;
+  applemusicID: string;
 }
-
 
 export default {
   setup() {
@@ -59,6 +58,14 @@ export default {
           .then((res: AxiosResponse<InfoResponse>) => {
             $q.loading.hide();
             if (res.status == 200) {
+              console.log(res.data)
+              const spotifyURL = res.data.Metadata.spotifyURL;
+              const deezerURL = res.data.Metadata.deezerURL;
+              if (spotifyURL.length == 0 && deezerURL.length == 0) {
+                if (res.data.acrID)
+                  window.location.href = 'https://aha-music.com/' + res.data.acrID
+              }
+
               apiData.value = res.data;
             } else {
               $q.notify({
