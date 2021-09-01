@@ -16,23 +16,34 @@ import { ref, onMounted } from 'vue';
 import LinkComponent from 'components/LinkComponent.vue';
 
 interface InfoResponse {
-  deezerURL: string;
-  deezerID: string;
-  soundcloudURL: string;
-  soundcloudID: string;
-  spotifyURL: string;
-  spotifyID: string;
-  youtubeURL: string;
-  youtubeID: string;
-  tidalURL: string;
-  tidalID: string;
-  applemusicURL: string;
-  applemusicID: string;
-  title: string;
-  album: string;
-  artist: string;
-  acrID: string;
+    id:        number;
+    createdAt: Date;
+    updatedAt: Date;
+    deletedAt: null;
+    itemID:    number;
+    title:     string;
+    album:     string;
+    artist:    string;
+    url:       string;
+    acrID:     string;
+    metadata:  Metadata;
 }
+
+interface Metadata {
+    deezerURL:     string;
+    deezerID:      string;
+    soundcloudURL: string;
+    soundcloudID:  string;
+    spotifyURL:    string;
+    spotifyID:     string;
+    youtubeURL:    string;
+    youtubeID:     string;
+    tidalURL:      string;
+    tidalID:       string;
+    applemusicURL: string;
+    applemusicID:  string;
+}
+
 
 export default {
   setup() {

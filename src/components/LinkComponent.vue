@@ -1,59 +1,92 @@
 <template>
   <q-card>
     <q-card-section>
-      <div class="text-h6">{{ data['title'] }}</div>
-      <div class="text-subtitle2">by {{ data['artist'] }}</div>
+      <div class="text-h6">{{ data.title }}</div>
+      <div class="text-subtitle2">by {{ data.artist }}</div>
     </q-card-section>
 
     <q-separator />
 
     <q-card-actions vertical>
       <q-btn
-        v-if="data['soundcloudURL']"
+        v-if="data.Metadata.soundcloudURL"
         color="soundcloud"
         icon="fab fa-soundcloud"
-        @click="handleClick(data['soundcloudURL'])"
+        @click="handleClick(data.Metadata.soundcloudURL)"
       />
       <q-btn
-        v-if="data['spotifyURL']"
+        v-if="data.Metadata.spotifyURL"
         color="spotify"
         icon="fab fa-spotify"
-        @click="handleClick(data['spotifyURL'])"
+        @click="handleClick(data.Metadata.spotifyURL)"
       />
       <q-btn
-        v-if="data['deezerURL']"
+        v-if="data.Metadata.deezerURL"
         color="deezer"
         icon="fab fa-deezer"
-        @click="handleClick(data['deezerURL'])"
+        @click="handleClick(data.Metadata.deezerURL)"
       />
       <q-btn
-        v-if="data['youtubeURL']"
+        v-if="data.Metadata.youtubeURL"
         color="youtube"
         icon="fab fa-youtube"
-        @click="handleClick(data['youtubeURL'])"
+        @click="handleClick(data.Metadata.youtubeURL)"
       />
       <q-btn
-        v-if="data['applemusicURL']"
+        v-if="data.Metadata.applemusicURL"
         color="applemusic"
         icon="fab fa-itunes"
-        @click="handleClick(data['applemusicURL'])"
+        @click="handleClick(data.Metadata.applemusicURL)"
       />
       <q-btn
-        v-if="data['tidalURL']"
+        v-if="data.Metadata.tidalURL"
         color="tidal"
         icon="img:/tidal.svg"
-        @click="handleClick(data['tidalURL'])"
+        @click="handleClick(data.Metadata.tidalURL)"
       />
     </q-card-actions>
   </q-card>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType  } from 'vue';
+
+interface InfoResponse {
+    id:        number;
+    createdAt: Date;
+    updatedAt: Date;
+    deletedAt: null;
+    itemID:    number;
+    title:     string;
+    album:     string;
+    artist:    string;
+    url:       string;
+    acrID:     string;
+    metadata:  Metadata;
+}
+
+interface Metadata {
+    deezerURL:     string;
+    deezerID:      string;
+    soundcloudURL: string;
+    soundcloudID:  string;
+    spotifyURL:    string;
+    spotifyID:     string;
+    youtubeURL:    string;
+    youtubeID:     string;
+    tidalURL:      string;
+    tidalID:       string;
+    applemusicURL: string;
+    applemusicID:  string;
+}
+
+
 export default defineComponent({
   name: 'LinkComponent',
   props: {
-    data: { default: [] }
+    data: { 
+      type: Object as PropType<InfoResponse>
+    }
   },
   setup() {
     return {
