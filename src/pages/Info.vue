@@ -27,6 +27,7 @@ interface InfoResponse {
   url: string;
   acrID: string;
   Metadata: Metadata;
+  Comment: Comment;
 }
 
 interface Metadata {
@@ -42,6 +43,18 @@ interface Metadata {
   tidalID: string;
   applemusicURL: string;
   applemusicID: string;
+}
+
+interface Comment {
+    commentID: number;
+    createdAt: Date;
+    updatedAt: Date;
+    deletedAt: null;
+    up:        number;
+    down:      number;
+    content:   string;
+    created:   Date;
+    thumb:     string;
 }
 
 export default {

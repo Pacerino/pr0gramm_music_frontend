@@ -2,7 +2,11 @@
   <q-card>
     <q-card-section>
       <div class="text-h6">{{ data.title }}</div>
-      <div class="text-subtitle2">by {{ data.artist }}</div>
+      
+      <div class="row no-wrap items-center">
+          <div class="text-subtitle2">by {{ data.artist }}</div>
+          <span class="text-caption text-grey q-ml-sm">( + {{data.Comment.up}} | - {{data.Comment.down}})</span>
+        </div>
     </q-card-section>
 
     <q-separator />
@@ -63,6 +67,7 @@ interface InfoResponse {
   url: string;
   acrID: string;
   Metadata: Metadata;
+  Comment: Comment;
 }
 
 interface Metadata {
@@ -80,12 +85,24 @@ interface Metadata {
   applemusicID: string;
 }
 
+interface Comment {
+  commentID: number;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: null;
+  up: number;
+  down: number;
+  content: string;
+  created: Date;
+  thumb: string;
+}
+
 export default defineComponent({
   name: 'LinkComponent',
   props: {
     data: {
-      type: Object as PropType<InfoResponse>
-    }
+      type: Object as PropType<InfoResponse>,
+    },
   },
   setup() {
     return {
