@@ -7,7 +7,7 @@
         <div class="text-subtitle2">by {{ data.artist }}</div>
         <span class="text-caption text-grey q-ml-sm">( + {{data.Comment.up}} | - {{data.Comment.down}})</span>
       </div>
-      <div class="text-caption text-grey" v-if="data.Comment.UpdatedAt">Letzte Aktualisierung: {{ formatDate(data.Comment.UpdatedAt) }} Uhr</div>
+      <div class="text-caption text-grey" v-if="data.Comment.UpdatedAt">{{ formatDate(data.Comment.UpdatedAt) }}</div>
     </q-card-section>
     
 
@@ -116,7 +116,10 @@ export default defineComponent({
         const momentDate = moment(date)
         if (momentDate.isValid()) {
           momentDate.locale('de')
-          return momentDate.format('LLL')
+          if(momentDate.year() < 2020) {
+            return 'Warte auf Kommentar...'
+          }
+          return 'Letzte Aktualisierung: ' + momentDate.format('LLL') + ' Uhr'
         }
       }
     };
