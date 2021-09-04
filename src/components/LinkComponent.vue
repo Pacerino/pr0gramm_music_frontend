@@ -4,10 +4,12 @@
       <div class="text-h6">{{ data.title }}</div>
       
       <div class="row no-wrap items-center">
-          <div class="text-subtitle2">by {{ data.artist }}</div>
-          <span class="text-caption text-grey q-ml-sm">( + {{data.Comment.up}} | - {{data.Comment.down}})</span>
-        </div>
+        <div class="text-subtitle2">by {{ data.artist }}</div>
+        <span class="text-caption text-grey q-ml-sm">( + {{data.Comment.up}} | - {{data.Comment.down}})</span>
+      </div>
+      <div class="text-caption text-grey" v-if="data.Comment.UpdatedAt">Letzte Aktualisierung: {{ formatDate(data.Comment.UpdatedAt) }} Uhr</div>
     </q-card-section>
+    
 
     <q-separator />
 
@@ -54,12 +56,13 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+import moment from 'moment';
 
 interface InfoResponse {
   id: number;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt: null;
+  CreatedAt: Date;
+  UpdatedAt: Date;
+  DeletedAt: null;
   itemID: number;
   title: string;
   album: string;
@@ -87,9 +90,9 @@ interface Metadata {
 
 interface Comment {
   commentID: number;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt: null;
+  CreatedAt: Date;
+  UpdatedAt: Date;
+  DeletedAt: null;
   up: number;
   down: number;
   content: string;
@@ -109,6 +112,13 @@ export default defineComponent({
       handleClick(url: string) {
         window.open(url, '_blank');
       },
+      formatDate(date: string) {
+        const momentDate = moment(date)
+        if (momentDate.isValid()) {
+          momentDate.locale('de')
+          return momentDate.format('LLL')
+        }
+      }
     };
   },
 });

@@ -7,6 +7,10 @@
       >
         <template v-slot:before>
           <q-tabs v-model="tab" vertical class="text-teal">
+            <q-tab name="1.0.7">
+              <div class="q-tab__label">v1.0.7</div>
+              <small class="text-grey-7">05.09.2021</small>
+            </q-tab>
             <q-tab name="1.0.6">
               <div class="q-tab__label">v1.0.6</div>
               <small class="text-grey-7">30.08.2021</small>
@@ -47,6 +51,24 @@
             transition-prev="jump-up"
             transition-next="jump-up"
           >
+            <q-tab-panel name="1.0.7">
+              <div class="text-h4 q-mb-md">v1.0.7</div>
+              <div>
+                <div class="text-h6 q-mb-md">Website</div>
+                <ul>
+                  <li>Posts ohne Ergebnisse werden nicht in der Übersicht angezeigt - Danke an <a href="https://pr0gramm.com/user/5yn74x " target="_blank" class="text-info">5yn74x</a></li>
+                  <li>Alle 10 Minuten werden die Kommentare des Bots abgerufen/geupdated</li>
+                  <li>Upvotes und Downvotes eines Ergebnis werden jetzt in dem Infoscreen angezeigt</li>
+                  <li>Letzte Aktualisierung des Kommentares wird in der Übersicht angezeigt</li>
+                  <li>Benis vom Kommentar wird nun in der Übersicht angezeigt</li>
+                  <li>Sollten keine Links vorhanden sein, wird der Benutzer auf aha-music.com weitergeleitet</li>
+                  <li>Korrektur eines Typos</li>
+                </ul>
+                <q-separator />
+                <div class="text-h6 q-mb-md">Bot</div>
+                <ul></ul>
+              </div>
+            </q-tab-panel>
             <q-tab-panel name="1.0.6">
               <div class="text-h4 q-mb-md">v1.0.6</div>
               <div>
@@ -83,7 +105,7 @@
                 <ul>
                   <li>Durchsuchen von gespeicherten Anfragen jetzt möglich</li>
                   <li>
-                    Tägliche Statistik über Anfragen mit derer Ergebnise nun als
+                    Tägliche Statistik über Anfragen mit derer Ergebnisse nun als
                     Chart
                   </li>
                   <li>Changelog für Web und Bot</li>
@@ -171,7 +193,7 @@ import { ref } from 'vue';
 export default {
   setup() {
     return {
-      tab: ref('1.0.6'),
+      tab: ref('1.0.7'),
       splitterModel: ref(10),
     };
   },

@@ -67,8 +67,21 @@ interface Row {
   album: string;
   artist: string;
   url: string;
-  noData: number;
+  Comment: Comment;
 }
+
+interface Comment {
+  commentID: number;
+  CreatedAt: Date;
+  UpdatedAt: Date;
+  DeletedAt: null;
+  up: number;
+  down: number;
+  content: string;
+  created: Date;
+  thumb: string;
+}
+
 interface ResponseObject {
   limit: number;
   page: number;
@@ -89,6 +102,7 @@ const columns = [
   { name: 'title', label: 'Titel', field: 'title', required: false },
   { name: 'album', label: 'Album', field: 'album', required: false },
   { name: 'artist', label: 'Artist', field: 'artist', required: false },
+  { name: 'benis', label: 'Benis', field: 'benis', required: false },
   { name: 'url', label: 'URL', field: 'url', required: false },
 ];
 
@@ -108,7 +122,17 @@ export default {
       api
         .get(`/items?limit=${rowsPerPage}&page=${page}&sort=desc`)
         .then((response: AxiosResponse<ResponseObject>) => {
-          rows.value.splice(0, rows.value.length, ...response.data.rows);
+          const data = response.data.rows.map(row => {
+            return {
+              'itemID': row.itemID,
+              'title': row.title,
+              'album': row.album,
+              'artist': row.artist,
+              'benis': (row.Comment.up - row.Comment.down),
+              'url': row.url,
+            }
+          })
+          rows.value.splice(0, rows.value.length, ...data);
 
           pagination.value.page = page;
           pagination.value.rowsNumber = response.data.total_rows;
