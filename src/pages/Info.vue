@@ -4,7 +4,7 @@
       <LinkComponent :data="apiData" v-cloak v-if="apiData"></LinkComponent>
       <h2 v-else>Keine Daten gefunden!</h2>
     </div>
-    <div class="fit row wrap justify-center items-start content-start q-gutter-md">
+    <div class="fit row wrap justify-center items-start content-start q-gutter-md" style="margin-left: -8px;">
       <DeezerComponent v-if="apiData.Metadata.deezerID" :data="apiData.Metadata.deezerID"/>
       <SpotifyComponent v-if="apiData.Metadata.spotifyID" :data="apiData.Metadata.spotifyID"/>
     </div>
