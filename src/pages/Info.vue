@@ -1,8 +1,12 @@
 <template>
-  <div class="row q-mt-md">
+  <div class="row q-gutter-y-md">
     <div class="fit row wrap justify-center items-start content-start">
       <LinkComponent :data="apiData" v-cloak v-if="apiData"></LinkComponent>
       <h2 v-else>Keine Daten gefunden!</h2>
+    </div>
+    <div class="fit row wrap justify-center items-start content-start q-gutter-md">
+      <DeezerComponent v-if="apiData.Metadata.deezerID" :data="apiData.Metadata.deezerID"/>
+      <SpotifyComponent v-if="apiData.Metadata.spotifyID" :data="apiData.Metadata.spotifyID"/>
     </div>
   </div>
 </template>
@@ -14,6 +18,8 @@ import { useQuasar } from 'quasar';
 import { AxiosResponse } from 'axios';
 import { ref, onMounted } from 'vue';
 import LinkComponent from 'components/LinkComponent.vue';
+import SpotifyComponent from 'components/SpotifyComponent.vue';
+import DeezerComponent from 'components/DeezerComponent.vue';
 
 interface InfoResponse {
   id: number;
@@ -100,6 +106,8 @@ export default {
   },
   components: {
     LinkComponent,
+    SpotifyComponent,
+    DeezerComponent,
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header elevated class="q-gutter-y-md">
       <q-toolbar>
         <q-toolbar-title>
           <q-btn :ripple="false" to="/" flat label="pr0gramm_music" />
