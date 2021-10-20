@@ -11,8 +11,10 @@ steps:
     password:
       from_secret: registrylogin
     repo: reg.s-c.systems/pr0/pr0music_web_frontend
-    tags: latest
+    auto_tag: true
     registry: reg.s-c.systems
-  when:
-    branch:
-    - master
+
+
+trigger:
+  event:
+  - tag
