@@ -14,19 +14,5 @@ steps:
     auto_tag: true
     registry: reg.s-c.systems
   when:
-    branch:
-    - refs/heads/master
-- name: docker_develop
-  image: plugins/docker
-  settings:
-    username:
-      from_secret: registry_user
-    password:
-      from_secret: registrylogin
-    repo: reg.s-c.systems/pr0/pr0music_web_frontend
-    auto_tag: true
-    auto_tag_suffix: develop
-    registry: reg.s-c.systems
-  when:
-    branch:
-    - refs/heads/develop
+    event:
+    - tag
