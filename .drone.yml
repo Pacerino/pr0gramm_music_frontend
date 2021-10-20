@@ -13,3 +13,6 @@ steps:
     repo: reg.s-c.systems/pr0/pr0music_web_frontend
     tags: latest
     registry: reg.s-c.systems
+  when:
+    branch:
+    - master
