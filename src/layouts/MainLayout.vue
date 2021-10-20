@@ -11,6 +11,7 @@
           <q-btn flat icon="insights" label="Statistik" to="/stats" />
           <q-btn flat icon="view_list" label="Changelog" to="/changelog" />
           <q-btn flat icon="code" label="Github" to="/" @click="handleGithub"/>
+          <q-btn flat icon="description" label="Api Docs" to="/" @click="handleDocs"/>
         </q-btn-group>
       </q-toolbar>
     </q-header>
@@ -29,6 +30,9 @@ export default defineComponent({
     return{
       handleGithub() {
         window.open('https://github.com/Pacerino?tab=repositories&q=pr0gramm_music', '_blank')
+      },
+      handleDocs() {
+        window.open('https://doc.pr0sauce.info', '_blank')
       }
     }
   }
