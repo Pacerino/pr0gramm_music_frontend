@@ -15,7 +15,7 @@ steps:
     registry: reg.s-c.systems
   when:
     branch:
-    - master
+    - refs/heads/master
 - name: docker_develop
   image: plugins/docker
   settings:
@@ -29,4 +29,4 @@ steps:
     registry: reg.s-c.systems
   when:
     branch:
-    - develop
+    - refs/heads/develop
