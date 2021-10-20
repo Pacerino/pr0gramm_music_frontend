@@ -13,6 +13,8 @@ steps:
     repo: reg.s-c.systems/pr0/pr0music_web_frontend
     auto_tag: true
     registry: reg.s-c.systems
-  when:
-    event:
-    - tag
+
+
+trigger:
+  event:
+  - tag
