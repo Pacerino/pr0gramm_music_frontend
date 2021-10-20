@@ -11,8 +11,22 @@ steps:
     password:
       from_secret: registrylogin
     repo: reg.s-c.systems/pr0/pr0music_web_frontend
-    tags: latest
+    auto_tag: true
     registry: reg.s-c.systems
   when:
     branch:
     - master
+- name: docker
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: registry_user
+    password:
+      from_secret: registrylogin
+    repo: reg.s-c.systems/pr0/pr0music_web_frontend
+    auto_tag: true
+    auto_tag_suffix: develop
+    registry: reg.s-c.systems
+  when:
+    branch:
+    - develop
